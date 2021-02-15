@@ -1,0 +1,36 @@
+{
+    "type": "object",
+    "properties": {
+      "connectionParams": {
+        "type": ["null", "object"],
+        "properties": {
+          "property2": {
+            "type": ["null", "string"]
+          },
+          "property1": {
+            "type": ["null", "string"]
+          }
+        },
+        "additionalProperties": false
+      },
+      "salesChannelId": {
+        "type": ["null", "integer"]
+      },
+      "phoneNumber": {
+        "type": ["null", "string"]
+      },
+      "companyName": {
+        "type": ["null", "string"]
+      },
+      "name": {
+        "type": ["null", "string"]
+      },
+      "active": {
+        "type": ["null", "boolean"]
+      },
+      "type": {
+        "type": ["null", "string"]
+      }
+    },
+    "additionalProperties": false
+  }

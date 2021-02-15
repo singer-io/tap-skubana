@@ -1,0 +1,138 @@
+{
+    "type": "object",
+    "properties": {
+      "stateAllocations": {
+        "type": "array",
+        "items": {
+          "type": ["null", "string"]
+        }
+      },
+      "address": {
+        "type": ["null", "object"],
+        "properties": {
+          "country": {
+            "type": ["null", "string"]
+          },
+          "zipCode": {
+            "type": ["null", "string"]
+          },
+          "address3": {
+            "type": ["null", "string"]
+          },
+          "province": {
+            "type": ["null", "string"]
+          },
+          "address2": {
+            "type": ["null", "string"]
+          },
+          "city": {
+            "type": ["null", "string"]
+          },
+          "address1": {
+            "type": ["null", "string"]
+          },
+          "state": {
+            "type": ["null", "string"]
+          },
+          "type": {
+            "type": ["null", "string"]
+          },
+          "addressId": {
+            "type": ["null", "integer"]
+          }
+        },
+        "additionalProperties": false
+      },
+      "domesticBackups": {
+        "type": "array",
+        "items": {
+          "type": ["null", "integer"]
+        }
+      },
+      "contactEmail": {
+        "type": ["null", "string"]
+      },
+      "phoneExtension": {
+        "type": ["null", "string"]
+      },
+      "active": {
+        "type": ["null", "boolean"]
+      },
+      "returnsLocation": {
+        "type": ["null", "object"],
+        "properties": {
+          "address": {
+            "type": ["null", "object"],
+            "properties": {
+              "country": {
+                "type": ["null", "string"]
+              },
+              "zipCode": {
+                "type": ["null", "string"]
+              },
+              "address3": {
+                "type": ["null", "string"]
+              },
+              "province": {
+                "type": ["null", "string"]
+              },
+              "address2": {
+                "type": ["null", "string"]
+              },
+              "city": {
+                "type": ["null", "string"]
+              },
+              "address1": {
+                "type": ["null", "string"]
+              },
+              "state": {
+                "type": ["null", "string"]
+              },
+              "type": {
+                "type": ["null", "string"]
+              },
+              "addressId": {
+                "type": ["null", "integer"]
+              }
+            },
+            "additionalProperties": false
+          },
+          "phone": {
+            "type": ["null", "string"]
+          },
+          "phoneExtension": {
+            "type": ["null", "string"]
+          },
+          "name": {
+            "type": ["null", "string"]
+          },
+          "attention": {
+            "type": ["null", "string"]
+          }
+        },
+        "additionalProperties": false
+      },
+      "type": {
+        "type": ["null", "string"]
+      },
+      "salesChannelId": {
+        "type": ["null", "integer"]
+      },
+      "warehouseId": {
+        "type": ["null", "integer"]
+      },
+      "name": {
+        "type": ["null", "string"]
+      },
+      "internationalRank": {
+        "type": ["null", "integer"]
+      },
+      "contactPhone": {
+        "type": ["null", "string"]
+      },
+      "fax": {
+        "type": ["null", "string"]
+      }
+    },
+    "additionalProperties": false
+  }

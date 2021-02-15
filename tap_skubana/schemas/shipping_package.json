@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "properties": {
+    "domestic": {
+      "type": ["null", "boolean"]
+    },
+    "packageCode": {
+      "type": ["null", "string"]
+    },
+    "shippingCarrier": {
+      "type": ["null", "string"]
+    },
+    "active": {
+      "type": ["null", "boolean"]
+    },
+    "description": {
+      "type": ["null", "string"]
+    },
+    "weightRequired": {
+      "type": ["null", "boolean"]
+    },
+    "packageName": {
+      "type": ["null", "string"]
+    },
+    "abbreviation": {
+      "type": ["null", "string"]
+    },
+    "international": {
+      "type": ["null", "boolean"]
+    },
+    "packageTypeId": {
+      "type": ["null", "integer"]
+    }
+  },
+  "additionalProperties": false
+}

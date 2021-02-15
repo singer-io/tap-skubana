@@ -1,0 +1,39 @@
+{
+  "type": "object",
+  "properties": {
+    "serviceCode": {
+      "type": ["null", "string"]
+    },
+    "shippingServiceId": {
+      "type": ["null", "integer"]
+    },
+    "dimensionsRequired": {
+      "type": ["null", "boolean"]
+    },
+    "halfPageLabel": {
+      "type": ["null", "boolean"]
+    },
+    "shippingCarrier": {
+      "type": ["null", "string"]
+    },
+    "active": {
+      "type": ["null", "boolean"]
+    },
+    "weightRequired": {
+      "type": ["null", "boolean"]
+    },
+    "abbreviation": {
+      "type": ["null", "string"]
+    },
+    "international": {
+      "type": ["null", "boolean"]
+    },
+    "serviceId": {
+      "type": ["null", "string"]
+    },
+    "serviceName": {
+      "type": ["null", "string"]
+    }
+  },
+  "additionalProperties": false
+}

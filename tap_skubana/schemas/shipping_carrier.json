@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": ["null", "string"]
+    },
+    "shippingCarrierId": {
+      "type": ["null", "integer"]
+    }
+  },
+  "additionalProperties": false
+}

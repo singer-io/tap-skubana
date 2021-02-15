@@ -1,0 +1,328 @@
+{
+    "type": "object",
+    "properties": {
+      "otherCosts": {
+        "type": "array",
+        "items": {
+          "type": ["null", "object"],
+          "properties": {
+            "amount": {
+              "type": ["null", "object"],
+              "properties": {
+                "amount": {
+                  "type": ["null", "integer"]
+                },
+                "currency": {
+                  "type": ["null", "string"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "description": {
+              "type": ["null", "string"]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "destinationWarehouseId": {
+        "type": ["null", "integer"]
+      },
+      "dateAuthorized": {
+        "type": ["null", "string"],
+        "format": "date-time"
+      },
+      "vendorId": {
+        "type": ["null", "integer"]
+      },
+      "vendorConfirmByDate": {
+        "type": ["null", "string"],
+        "format": "date-time"
+      },
+      "type": {
+        "type": ["null", "string"]
+      },
+      "incotermShippingRule": {
+        "type": ["null", "string"]
+      },
+      "purchaseOrderItems": {
+        "type": "array",
+        "items": {
+          "type": ["null", "object"],
+          "properties": {
+            "uomUnitQuantity": {
+              "type": ["null", "integer"]
+            },
+            "quantity": {
+              "type": ["null", "integer"]
+            },
+            "unitOfMeasure": {
+              "type": ["null", "string"]
+            },
+            "vendorProductMasterSku": {
+              "type": ["null", "string"]
+            },
+            "discount": {
+              "type": ["null", "object"],
+              "properties": {
+                "amount": {
+                  "type": ["null", "integer"]
+                },
+                "discountType": {
+                  "type": ["null", "string"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "memo": {
+              "type": ["null", "string"]
+            },
+            "packaging": {
+              "type": ["null", "string"]
+            },
+            "landedUnitCost": {
+              "type": ["null", "object"],
+              "properties": {
+                "amount": {
+                  "type": ["null", "integer"]
+                },
+                "currency": {
+                  "type": ["null", "string"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "estimatedDeliveryDate": {
+              "type": ["null", "string"],
+              "format": "date-time"
+            },
+            "percentageTax": {
+              "type": ["null", "integer"]
+            },
+            "productStockId": {
+              "type": ["null", "integer"]
+            },
+            "vendorProductId": {
+              "type": ["null", "integer"]
+            },
+            "vendorProductVendorSku": {
+              "type": ["null", "string"]
+            },
+            "referenceNumber": {
+              "type": ["null", "string"]
+            },
+            "holds": {
+              "type": "array",
+              "items": {
+                "type": ["null", "object"],
+                "properties": {
+                  "quantity": {
+                    "type": ["null", "integer"]
+                  },
+                  "warehouseId": {
+                    "type": ["null", "integer"]
+                  },
+                  "memo": {
+                    "type": ["null", "string"]
+                  },
+                  "id": {
+                    "type": ["null", "integer"]
+                  },
+                  "purchaseOrderItemId": {
+                    "type": ["null", "integer"]
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "originalUnitCost": {
+              "type": ["null", "object"],
+              "properties": {
+                "amount": {
+                  "type": ["null", "integer"]
+                },
+                "currency": {
+                  "type": ["null", "string"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "deliveryDate": {
+              "type": ["null", "string"],
+              "format": "date-time"
+            },
+            "purchaseOrderItemId": {
+              "type": ["null", "integer"]
+            },
+            "billedDate": {
+              "type": ["null", "string"],
+              "format": "date-time"
+            },
+            "receivedDate": {
+              "type": ["null", "string"],
+              "format": "date-time"
+            },
+            "billedUnitCost": {
+              "type": ["null", "object"],
+              "properties": {
+                "amount": {
+                  "type": ["null", "integer"]
+                },
+                "currency": {
+                  "type": ["null", "string"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "status": {
+              "type": ["null", "string"]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "number": {
+        "type": ["null", "string"]
+      },
+      "dateCreated": {
+        "type": ["null", "string"],
+        "format": "date-time"
+      },
+      "currency": {
+        "type": ["null", "string"]
+      },
+      "incotermShippingRuleId": {
+        "type": ["null", "integer"]
+      },
+      "purchaseOrderTemplateId": {
+        "type": ["null", "integer"]
+      },
+      "dateIssued": {
+        "type": ["null", "string"],
+        "format": "date-time"
+      },
+      "messagesToVendor": {
+        "type": "array",
+        "items": {
+          "type": ["null", "string"]
+        }
+      },
+      "assignedPurchaseOrderMilestones": {
+        "type": "array",
+        "items": {
+          "type": ["null", "object"],
+          "properties": {
+            "milestone": {
+              "type": ["null", "object"],
+              "properties": {
+                "hexColor": {
+                  "type": ["null", "string"]
+                },
+                "name": {
+                  "type": ["null", "string"]
+                },
+                "active": {
+                  "type": ["null", "boolean"]
+                },
+                "id": {
+                  "type": ["null", "integer"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "reached": {
+              "type": ["null", "boolean"]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "shippingCost": {
+        "type": ["null", "object"],
+        "properties": {
+          "amount": {
+            "type": ["null", "integer"]
+          },
+          "currency": {
+            "type": ["null", "string"]
+          }
+        },
+        "additionalProperties": false
+      },
+      "authorizer": {
+        "type": ["null", "object"],
+        "properties": {
+          "name": {
+            "type": ["null", "string"]
+          },
+          "userId": {
+            "type": ["null", "integer"]
+          },
+          "email": {
+            "type": ["null", "string"]
+          }
+        },
+        "additionalProperties": false
+      },
+      "format": {
+        "type": ["null", "string"]
+      },
+      "dateModified": {
+        "type": ["null", "string"],
+        "format": "date-time"
+      },
+      "internalNotes": {
+        "type": ["null", "string"]
+      },
+      "dropshipOrderId": {
+        "type": ["null", "integer"]
+      },
+      "customPurchaseOrderNumber": {
+        "type": ["null", "string"]
+      },
+      "createdBy": {
+        "type": ["null", "object"],
+        "properties": {
+          "name": {
+            "type": ["null", "string"]
+          },
+          "userId": {
+            "type": ["null", "integer"]
+          },
+          "email": {
+            "type": ["null", "string"]
+          }
+        },
+        "additionalProperties": false
+      },
+      "purchaseOrderId": {
+        "type": ["null", "integer"]
+      },
+      "autoUpdatesEnabled": {
+        "type": ["null", "boolean"]
+      },
+      "vendorConfirmedOnDate": {
+        "type": ["null", "string"],
+        "format": "date-time"
+      },
+      "paymentTerm": {
+        "type": ["null", "object"],
+        "properties": {
+          "vendorPaymentTermId": {
+            "type": ["null", "integer"]
+          },
+          "active": {
+            "type": ["null", "boolean"]
+          },
+          "description": {
+            "type": ["null", "string"]
+          }
+        },
+        "additionalProperties": false
+      },
+      "status": {
+        "type": ["null", "string"]
+      }
+    },
+    "additionalProperties": false
+  }

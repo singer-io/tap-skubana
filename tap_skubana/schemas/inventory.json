@@ -1,0 +1,94 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "active": { 
+        "type": ["null", "boolean"] 
+    },
+    "allocatedQuantity": {
+      "type": ["null", "integer"]
+    },
+    "availableQuantity": {
+      "type": ["null", "integer"]
+    },
+    "drawRank": {
+      "type": ["null", "integer"]
+    },
+    "minStock": {
+      "type": ["null", "integer"]
+    },
+    "pickable": {
+      "type": ["null", "boolean"]
+    },
+    "product": {
+      "description": {
+        "type": ["null", "string"]
+      },
+      "fnSku": {
+        "type": ["null", "string"]
+      },
+      "hazmat": {
+        "type": ["null", "boolean"]
+      },
+      "masterSku": {
+        "type": ["null", "string"]
+      },
+      "mpn": {
+        "type": ["null", "string"]
+      },
+      "name": {
+        "type": ["null", "string"]
+      },
+      "productId": {
+        "type": ["null", "integer"]
+      },
+      "productType": {
+        "type": ["null", "string"]
+      },
+      "productWeight": {
+        "type": ["null", "integer"]
+      },
+      "upc": "string"
+    },
+    "productStockId": {
+      "type": ["null", "integer"]
+    },
+    "quantity": {
+      "type": ["null", "integer"]
+    },
+    "quantityLocked": {
+      "type": ["null", "integer"]
+    },
+    "receivable": {
+      "type": ["null", "boolean"]
+    },
+    "stockLocation": {
+      "location": {
+        "type": ["null", "string"]
+      },
+      "stockLocationId": {
+        "type": ["null", "integer"]
+      },
+      "warehouseId": {
+        "type": ["null", "integer"]
+      }
+    },
+    "warehouseStockTotals": {
+      "allocatedQuantity": {
+        "type": ["null", "integer"]
+      },
+      "availableQuantity": {
+        "type": ["null", "integer"]
+      },
+      "inTransitQuantity": {
+        "type": ["null", "integer"]
+      },
+      "lockedQuantity": {
+        "type": ["null", "integer"]
+      },
+      "onHandQuantity": {
+        "type": ["null", "integer"]
+      }
+    }
+  }
+}

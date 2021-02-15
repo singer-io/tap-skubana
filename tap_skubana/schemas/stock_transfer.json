@@ -1,0 +1,86 @@
+{
+  "type": "object",
+  "properties": {
+    "stockTransferOrderId": {
+      "type": ["null", "integer"]
+    },
+    "stockTransferOrderNumber": {
+      "type": ["null", "string"]
+    },
+    "createdDate": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
+    "shipMethod": {
+      "type": ["null", "object"],
+      "properties": {
+        "shippingServiceId": {
+          "type": ["null", "integer"]
+        },
+        "shippingCarrier": {
+          "type": ["null", "string"]
+        },
+        "packageTypeId": {
+          "type": ["null", "integer"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "toWarehouseId": {
+      "type": ["null", "integer"]
+    },
+    "internalNotes": {
+      "type": ["null", "string"]
+    },
+    "fromWarehouseId": {
+      "type": ["null", "integer"]
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": ["null", "object"],
+        "properties": {
+          "stockTransferOrderId": {
+            "type": ["null", "integer"]
+          },
+          "masterSku": {
+            "type": ["null", "string"]
+          },
+          "quantity": {
+            "type": ["null", "integer"]
+          },
+          "productId": {
+            "type": ["null", "integer"]
+          },
+          "stockTransferOrderItemId": {
+            "type": ["null", "integer"]
+          },
+          "internalNotes": {
+            "type": ["null", "string"]
+          },
+          "receivedProductStockId": {
+            "type": ["null", "integer"]
+          },
+          "receivedDate": {
+            "type": ["null", "string"],
+            "format": "date-time"
+          },
+          "eligibleReceivingStockIds": {
+            "type": "array",
+            "items": {
+              "type": ["null", "integer"]
+            }
+          },
+          "status": {
+            "type": ["null", "string"]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "status": {
+      "type": ["null", "string"]
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "active": {
+      "type": ["null", "boolean"]
+    },
+    "listingId": {
+      "type": ["null", "integer"]
+    },
+    "productId": {
+      "type": ["null", "integer"]
+    },
+    "listingSku": {
+      "type": ["null", "string"]
+    },
+    "masterSku": {
+        "type": ["null", "string"]
+      },
+    "pushInventory": {
+      "type": ["null", "boolean"]
+    },
+    "salesChannelId": {
+      "type": ["null", "integer"]
+    },
+    "created": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    }
+  }
+}

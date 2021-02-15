@@ -1,0 +1,96 @@
+{
+    "type": "object",
+    "properties": {
+      "address": {
+        "type": ["null", "object"],
+        "properties": {
+          "country": {
+            "type": ["null", "string"]
+          },
+          "zipCode": {
+            "type": ["null", "string"]
+          },
+          "address3": {
+            "type": ["null", "string"]
+          },
+          "province": {
+            "type": ["null", "string"]
+          },
+          "address2": {
+            "type": ["null", "string"]
+          },
+          "city": {
+            "type": ["null", "string"]
+          },
+          "address1": {
+            "type": ["null", "string"]
+          },
+          "state": {
+            "type": ["null", "string"]
+          },
+          "type": {
+            "type": ["null", "string"]
+          },
+          "addressId": {
+            "type": ["null", "integer"]
+          }
+        },
+        "additionalProperties": false
+      },
+      "contactEmail": {
+        "type": ["null", "string"]
+      },
+      "contactName": {
+        "type": ["null", "string"]
+      },
+      "name": {
+        "type": ["null", "string"]
+      },
+      "billingAddress": {
+        "type": ["null", "object"],
+        "properties": {
+          "country": {
+            "type": ["null", "string"]
+          },
+          "zipCode": {
+            "type": ["null", "string"]
+          },
+          "address3": {
+            "type": ["null", "string"]
+          },
+          "province": {
+            "type": ["null", "string"]
+          },
+          "address2": {
+            "type": ["null", "string"]
+          },
+          "city": {
+            "type": ["null", "string"]
+          },
+          "address1": {
+            "type": ["null", "string"]
+          },
+          "state": {
+            "type": ["null", "string"]
+          },
+          "type": {
+            "type": ["null", "string"]
+          },
+          "addressId": {
+            "type": ["null", "integer"]
+          }
+        },
+        "additionalProperties": false
+      },
+      "contactPhone": {
+        "type": ["null", "string"]
+      },
+      "countryOfOperation": {
+        "type": ["null", "string"]
+      },
+      "status": {
+        "type": ["null", "string"]
+      }
+    },
+    "additionalProperties": false
+  }

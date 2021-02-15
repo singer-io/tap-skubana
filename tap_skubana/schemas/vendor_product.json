@@ -1,0 +1,117 @@
+{
+  "type": "object",
+  "properties": {
+    "vendorSku": {
+      "type": ["null", "string"]
+    },
+    "vendorProductId": {
+      "type": ["null", "integer"]
+    },
+    "product": {
+      "type": ["null", "object"],
+      "properties": {
+        "masterSku": {
+          "type": ["null", "string"]
+        },
+        "productId": {
+          "type": ["null", "integer"]
+        },
+        "fnSku": {
+          "type": ["null", "string"]
+        },
+        "hazmat": {
+          "type": ["null", "boolean"]
+        },
+        "name": {
+          "type": ["null", "string"]
+        },
+        "description": {
+          "type": ["null", "string"]
+        },
+        "upc": {
+          "type": ["null", "string"]
+        },
+        "mpn": {
+          "type": ["null", "string"]
+        },
+        "productWeight": {
+          "type": ["null", "integer"]
+        },
+        "productType": {
+          "type": ["null", "string"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "pricingTiers": {
+      "type": "array",
+      "items": {
+        "type": ["null", "object"],
+        "properties": {
+          "toQuantity": {
+            "type": ["null", "integer"]
+          },
+          "cost": {
+            "type": ["null", "object"],
+            "properties": {
+              "amount": {
+                "type": ["null", "integer"]
+              },
+              "currency": {
+                "type": ["null", "string"]
+              }
+            },
+            "additionalProperties": false
+          },
+          "fromQuantity": {
+            "type": ["null", "integer"]
+          },
+          "id": {
+            "type": ["null", "integer"]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "active": {
+      "type": ["null", "boolean"]
+    },
+    "autoPoRounding": {
+      "type": ["null", "string"]
+    },
+    "unitsOfMeasure": {
+      "type": "array",
+      "items": {
+        "type": ["null", "object"],
+        "properties": {
+          "unitQuantity": {
+            "type": ["null", "integer"]
+          },
+          "name": {
+            "type": ["null", "string"]
+          },
+          "id": {
+            "type": ["null", "integer"]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "vendorId": {
+      "type": ["null", "integer"]
+    },
+    "leadTime": {
+      "type": ["null", "integer"]
+    },
+    "minOrderQuantity": {
+      "type": ["null", "integer"]
+    },
+    "packaging": {
+      "type": ["null", "string"]
+    },
+    "defaultProduct": {
+      "type": ["null", "boolean"]
+    }
+  },
+  "additionalProperties": false
+}

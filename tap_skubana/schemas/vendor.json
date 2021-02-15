@@ -1,0 +1,123 @@
+{
+  "type": "object",
+  "properties": {
+    "contactPhone2": {
+      "type": ["null", "string"]
+    },
+    "defaultVendorPaymentTerm": {
+      "type": ["null", "object"],
+      "properties": {
+        "vendorPaymentTermId": {
+          "type": ["null", "integer"]
+        },
+        "active": {
+          "type": ["null", "boolean"]
+        },
+        "description": {
+          "type": ["null", "string"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "website": {
+      "type": ["null", "string"]
+    },
+    "address": {
+      "type": ["null", "object"],
+      "properties": {
+        "country": {
+          "type": ["null", "string"]
+        },
+        "zipCode": {
+          "type": ["null", "string"]
+        },
+        "address3": {
+          "type": ["null", "string"]
+        },
+        "province": {
+          "type": ["null", "string"]
+        },
+        "address2": {
+          "type": ["null", "string"]
+        },
+        "city": {
+          "type": ["null", "string"]
+        },
+        "address1": {
+          "type": ["null", "string"]
+        },
+        "state": {
+          "type": ["null", "string"]
+        },
+        "type": {
+          "type": ["null", "string"]
+        },
+        "addressId": {
+          "type": ["null", "integer"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "contactEmail": {
+      "type": ["null", "string"]
+    },
+    "contactPhone1": {
+      "type": ["null", "string"]
+    },
+    "dropshipper": {
+      "type": ["null", "boolean"]
+    },
+    "active": {
+      "type": ["null", "boolean"]
+    },
+    "vendorId": {
+      "type": ["null", "integer"]
+    },
+    "defaultPurchaseOrderTemplateId": {
+      "type": ["null", "integer"]
+    },
+    "warehouse": {
+      "type": ["null", "object"],
+      "properties": {
+        "warehouseId": {
+          "type": ["null", "integer"]
+        },
+        "name": {
+          "type": ["null", "string"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "defaultIncotermShippingRuleId": {
+      "type": ["null", "integer"]
+    },
+    "percentageTax": {
+      "type": ["null", "integer"]
+    },
+    "purchaseOrderEmail": {
+      "type": ["null", "string"]
+    },
+    "manufacturer": {
+      "type": ["null", "boolean"]
+    },
+    "defaultPurchaseOrderFormat": {
+      "type": ["null", "string"]
+    },
+    "supplier": {
+      "type": ["null", "boolean"]
+    },
+    "name": {
+      "type": ["null", "string"]
+    },
+    "defaultIncotermShippingRule": {
+      "type": ["null", "string"]
+    },
+    "fax": {
+      "type": ["null", "string"]
+    },
+    "dropshipPurchaseOrderTemplateId": {
+      "type": ["null", "integer"]
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,229 @@
+{
+  "type": "object",
+  "properties": {
+    "orderNumber": {
+      "type": ["null", "string"]
+    },
+    "orderId": {
+      "type": ["null", "integer"]
+    },
+    "created": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
+    "insuranceTrackingNumber": {
+      "type": ["null", "string"]
+    },
+    "rma": {
+      "type": ["null", "integer"]
+    },
+    "estimatedArrival": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
+    "received": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
+    "shipDate": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
+    "type": {
+      "type": ["null", "string"]
+    },
+    "transactionId": {
+      "type": ["null", "string"]
+    },
+    "external": {
+      "type": ["null", "boolean"]
+    },
+    "warehouseId": {
+      "type": ["null", "integer"]
+    },
+    "shipmentId": {
+      "type": ["null", "integer"]
+    },
+    "shipMethod": {
+      "type": ["null", "object"],
+      "properties": {
+        "ltlFtlShipment": {
+          "type": ["null", "object"],
+          "properties": {
+            "freightReadyDate": {
+              "type": ["null", "string"]
+            },
+            "roleType": {
+              "type": ["null", "string"]
+            },
+            "liabilityType": {
+              "type": ["null", "string"]
+            },
+            "sellerDeclaredValue": {
+              "type": ["null", "integer"]
+            },
+            "liabilityCoverage": {
+              "type": ["null", "integer"]
+            },
+            "boxCount": {
+              "type": ["null", "integer"]
+            },
+            "contact": {
+              "type": ["null", "object"],
+              "properties": {
+                "phone": {
+                  "type": ["null", "string"]
+                },
+                "name": {
+                  "type": ["null", "string"]
+                },
+                "id": {
+                  "type": ["null", "integer"]
+                },
+                "fax": {
+                  "type": ["null", "string"]
+                },
+                "email": {
+                  "type": ["null", "string"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "pallets": {
+              "type": "array",
+              "items": {
+                "type": ["null", "object"],
+                "properties": {
+                  "stacked": {
+                    "type": ["null", "boolean"]
+                  },
+                  "length": {
+                    "type": ["null", "integer"]
+                  },
+                  "width": {
+                    "type": ["null", "integer"]
+                  },
+                  "weight": {
+                    "type": ["null", "integer"]
+                  },
+                  "id": {
+                    "type": ["null", "integer"]
+                  },
+                  "packages": {
+                    "type": "array",
+                    "items": {
+                      "type": ["null", "object"],
+                      "properties": {
+                        "insuredValue": {
+                          "type": ["null", "object"],
+                          "properties": {
+                            "roundingMode": {
+                              "type": ["null", "string"]
+                            },
+                            "amount": {
+                              "type": ["null", "integer"]
+                            },
+                            "currency": {
+                              "type": ["null", "string"]
+                            }
+                          },
+                          "additionalProperties": false
+                        },
+                        "length": {
+                          "type": ["null", "integer"]
+                        },
+                        "width": {
+                          "type": ["null", "integer"]
+                        },
+                        "packagingTypeId": {
+                          "type": ["null", "integer"]
+                        },
+                        "weight": {
+                          "type": ["null", "integer"]
+                        },
+                        "id": {
+                          "type": ["null", "integer"]
+                        },
+                        "weightUnitOfMeasure": {
+                          "type": ["null", "string"]
+                        },
+                        "height": {
+                          "type": ["null", "integer"]
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  },
+                  "packagingType": {
+                    "type": ["null", "string"]
+                  },
+                  "height": {
+                    "type": ["null", "integer"]
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "specialService": {
+              "type": ["null", "string"]
+            },
+            "totalWeight": {
+              "type": ["null", "integer"]
+            },
+            "sellerFreightClass": {
+              "type": ["null", "string"]
+            },
+            "measurementUnitId": {
+              "type": ["null", "integer"]
+            },
+            "id": {
+              "type": ["null", "integer"]
+            }
+          },
+          "additionalProperties": false
+        },
+        "shippingProviderId": {
+          "type": ["null", "integer"]
+        },
+        "shippingServiceId": {
+          "type": ["null", "integer"]
+        },
+        "shippingCarrier": {
+          "type": ["null", "string"]
+        },
+        "packageTypeId": {
+          "type": ["null", "integer"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "shippingLabelUrls": {
+      "type": "array",
+      "items": {
+        "type": ["null", "string"]
+      }
+    },
+    "carrierFee": {
+      "type": ["null", "object"],
+      "properties": {
+        "amount": {
+          "type": ["null", "integer"]
+        },
+        "currency": {
+          "type": ["null", "string"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "trackingNumber": {
+      "type": ["null", "string"]
+    },
+    "deliveryStatus": {
+      "type": ["null", "string"]
+    },
+    "batchNumber": {
+      "type": ["null", "integer"]
+    }
+  },
+  "additionalProperties": false
+}

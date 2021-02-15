@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "properties": {
+    "gift": {
+      "type": ["null", "boolean"]
+    },
+    "orderType": {
+      "type": ["null", "string"]
+    },
+    "orderNumber": {
+      "type": ["null", "string"]
+    },
+    "customField1": {
+      "type": ["null", "string"]
+    },
+    "shipEmail": {
+      "type": ["null", "string"]
+    },
+    "customField2": {
+      "type": ["null", "string"]
+    },
+    "orderId": {
+      "type": ["null", "integer"]
+    },
+    "modifiedDate": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}
