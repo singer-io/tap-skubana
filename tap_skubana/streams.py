@@ -26,10 +26,6 @@ class BaseStream:
     def get_abs_path(path):
         return os.path.join(os.path.dirname(os.path.realpath(__file__)), path)
 
-    def get_stream_catalog(self, name):
-        return next((stream for stream in self.catalog.streams
-                     if stream.tap_stream_id == name), None)
-
     def load_schema(self):
         schema_path = self.get_abs_path('schemas')
         return singer.utils.load_json('{}/{}.json'.format(
@@ -70,12 +66,6 @@ class BaseStream:
         else:
             singer.set_currently_syncing(self.state, self.name)
         singer.write_state(self.state)
-
-    # def get_bookmark(self, stream, default):
-    #     # default only populated on initial sync
-    #     if (self.state is None) or ('bookmarks' not in self.state):
-    #         return default
-    #     return self.state.get('bookmarks', {}).get(stream, default)
 
     # Returns max key and date time for all replication key data in record
     def max_from_replication_dates(self, record):
