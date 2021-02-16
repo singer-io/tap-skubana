@@ -5,6 +5,9 @@
     "active": {
       "type": ["null", "boolean"]
     },
+    "fnSku": {
+      "type": ["null", "string"]
+    },
     "listingId": {
       "type": ["null", "integer"]
     },
@@ -15,8 +18,8 @@
       "type": ["null", "string"]
     },
     "masterSku": {
-        "type": ["null", "string"]
-      },
+      "type": ["null", "string"]
+    },
     "pushInventory": {
       "type": ["null", "boolean"]
     },
@@ -24,6 +27,10 @@
       "type": ["null", "integer"]
     },
     "created": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
+    "lastModified": {
       "type": ["null", "string"],
       "format": "date-time"
     }

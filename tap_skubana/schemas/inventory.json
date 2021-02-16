@@ -21,34 +21,40 @@
       "type": ["null", "boolean"]
     },
     "product": {
-      "description": {
-        "type": ["null", "string"]
-      },
-      "fnSku": {
-        "type": ["null", "string"]
-      },
-      "hazmat": {
-        "type": ["null", "boolean"]
-      },
-      "masterSku": {
-        "type": ["null", "string"]
-      },
-      "mpn": {
-        "type": ["null", "string"]
-      },
-      "name": {
-        "type": ["null", "string"]
-      },
-      "productId": {
-        "type": ["null", "integer"]
-      },
-      "productType": {
-        "type": ["null", "string"]
-      },
-      "productWeight": {
-        "type": ["null", "integer"]
-      },
-      "upc": "string"
+      "type": ["null", "object"],
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": ["null", "string"]
+        },
+        "fnSku": {
+          "type": ["null", "string"]
+        },
+        "hazmat": {
+          "type": ["null", "boolean"]
+        },
+        "masterSku": {
+          "type": ["null", "string"]
+        },
+        "mpn": {
+          "type": ["null", "string"]
+        },
+        "name": {
+          "type": ["null", "string"]
+        },
+        "productId": {
+          "type": ["null", "integer"]
+        },
+        "productType": {
+          "type": ["null", "string"]
+        },
+        "productWeight": {
+          "type": ["null", "integer"]
+        },
+        "upc": {
+          "type": ["null", "string"]
+        }
+      }
     },
     "productStockId": {
       "type": ["null", "integer"]
@@ -63,31 +69,39 @@
       "type": ["null", "boolean"]
     },
     "stockLocation": {
-      "location": {
-        "type": ["null", "string"]
-      },
-      "stockLocationId": {
-        "type": ["null", "integer"]
-      },
-      "warehouseId": {
-        "type": ["null", "integer"]
+      "type": ["null", "object"],
+      "additionalProperties": false,
+      "properties": {
+        "location": {
+          "type": ["null", "string"]
+        },
+        "stockLocationId": {
+          "type": ["null", "integer"]
+        },
+        "warehouseId": {
+          "type": ["null", "integer"]
+        }
       }
     },
     "warehouseStockTotals": {
-      "allocatedQuantity": {
-        "type": ["null", "integer"]
-      },
-      "availableQuantity": {
-        "type": ["null", "integer"]
-      },
-      "inTransitQuantity": {
-        "type": ["null", "integer"]
-      },
-      "lockedQuantity": {
-        "type": ["null", "integer"]
-      },
-      "onHandQuantity": {
-        "type": ["null", "integer"]
+      "type": ["null", "object"],
+            "additionalProperties": false,
+            "properties": {
+        "allocatedQuantity": {
+          "type": ["null", "integer"]
+        },
+        "availableQuantity": {
+          "type": ["null", "integer"]
+        },
+        "inTransitQuantity": {
+          "type": ["null", "integer"]
+        },
+        "lockedQuantity": {
+          "type": ["null", "integer"]
+        },
+        "onHandQuantity": {
+          "type": ["null", "integer"]
+        }
       }
     }
   }

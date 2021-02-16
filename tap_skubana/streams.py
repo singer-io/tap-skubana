@@ -67,14 +67,14 @@ class BaseStream:
             singer.set_currently_syncing(self.state, self.name)
         singer.write_state(self.state)
 
-    # Returns max key and date time for all replication key data in record
+    # Returns max date time and preferred key for all replication key data in record
     def max_from_replication_dates(self, record):
         date_times = {
             dt: strptime_to_utc(record[dt])
-            for dt in self.key_properties if record[dt] is not None
+            for dt in self.valid_replication_keys if record[dt] is not None
         }
         max_key = max(date_times)
-        return date_times[max_key]
+        return self.valid_replication_keys[-1], date_times[max_key]
 
     def get_resources_by_date(self, date=None):
         if date:
@@ -93,6 +93,10 @@ class BaseStream:
                                          filter_params=self.filter_params,
                                          single_page=self.single_page_response)
 
+    @staticmethod
+    def transform_record(record):
+        return record
+
     def sync(self, stream_schema, stream_metadata, bookmark=None):
         self.write_schema()
         if self.replication_method == 'INCREMENTAL':
@@ -107,21 +111,25 @@ class BaseStream:
                 time_extracted = utils.now()
                 for page in self.get_resources_by_date(bookmark):
                     for record in page:
-                        record_bookmark = strptime_to_utc(
-                            record.get(self.valid_replication_keys[0]))
-                        new_bookmark = max(new_bookmark, record_bookmark)
-                        if record_bookmark > bookmark:
+                        replication_key, max_time = self.max_from_replication_dates(
+                            record)
+                        if replication_key not in record:
+                            record[replication_key] = max_time
+                        new_bookmark = max(new_bookmark, max_time)
+                        if max_time > bookmark:
                             with Transformer() as transformer:
                                 transformed_record = transformer.transform(
                                     record,
                                     stream_schema,
                                     stream_metadata,
                                 )
-                                singer.write_record(self.name,
-                                                    transformed_record,
-                                                    time_extracted=time_extracted)
+                                singer.write_record(
+                                    self.name,
+                                    transformed_record,
+                                    time_extracted=time_extracted)
                             counter.increment()
-                    self.update_bookmark(self.name, strftime(new_bookmark, DATETIME_PARSE))
+                    self.update_bookmark(
+                        self.name, strftime(new_bookmark, DATETIME_PARSE))
             return counter.value
 
     def sync_full_table(self, stream_schema, stream_metadata):
@@ -129,10 +137,12 @@ class BaseStream:
             time_extracted = utils.now()
             for page in self.get_resources():
                 for record in page:
+                    transformed_record = self.transform_record(record)
                     with Transformer() as transformer:
                         singer.write_record(self.name,
                                             transformer.transform(
-                                                record, stream_schema,
+                                                transformed_record,
+                                                stream_schema,
                                                 stream_metadata),
                                             time_extracted=time_extracted)
                     counter.increment()
@@ -143,17 +153,33 @@ class Product(BaseStream):
     name = 'product'
     key_properties = ['productId']
     replication_method = 'INCREMENTAL'
-    valid_replication_keys = ['modifiedDate']
+    valid_replication_keys = ['createdDate', 'modifiedDate']
     bookmark_field = 'modifiedDateFrom'
     endpoint = 'products'
     version = 'v1.1'
+
+
+class ProductStockTotal(BaseStream):
+    name = 'product_stock_total'
+    key_properties = ['masterSku']
+    replication_method = 'FULL_TABLE'
+    valid_replication_keys = ['']
+    endpoint = 'productstocks/total'
+    version = 'v1'
+
+    @staticmethod
+    def transform_record(record):
+        for key, value in record.get('product', '').items():
+            record[key] = value
+        del record['product']
+        return record
 
 
 class PurchaseOrder(BaseStream):
     name = 'purchase_order'
     key_properties = ['purchaseOrderId']
     replication_method = 'INCREMENTAL'
-    valid_replication_keys = ['modifiedDate']
+    valid_replication_keys = ['dateCreated', 'modifiedDate']
     bookmark_field = 'modifiedDateFrom'
     endpoint = 'purchaseorders'
     version = 'v1.1'
@@ -179,11 +205,31 @@ class Inventory(BaseStream):
     version = 'v1'
 
 
+class IncotermShipRule(BaseStream):
+    name = 'incoterm_ship_rule'
+    key_properties = ['incotermShippingRuleId']
+    replication_method = 'FULL_TABLE'
+    valid_replication_keys = ['']
+    endpoint = 'incotermshiprules'
+    version = 'v1'
+    single_page_response = True
+
+
+class PaymentType(BaseStream):
+    name = 'payment_type'
+    key_properties = ['orderPaymentTypeId']
+    replication_method = 'FULL_TABLE'
+    valid_replication_keys = ['']
+    endpoint = 'paymenttypes'
+    version = 'v1'
+    single_page_response = True
+
+
 class Order(BaseStream):
     name = 'order'
     key_properties = ['orderId']
     replication_method = 'INCREMENTAL'
-    valid_replication_keys = ['modifiedDate']
+    valid_replication_keys = ['createdDate', 'modifiedDate']
     bookmark_field = 'modifiedDateFrom'
     endpoint = 'orders'
     version = 'v1.1'
@@ -193,7 +239,7 @@ class StockTransfer(BaseStream):
     name = 'stock_transfer'
     key_properties = ['stockTransferOrderId']
     replication_method = 'INCREMENTAL'
-    valid_replication_keys = ['created']
+    valid_replication_keys = ['createdDate']
     bookmark_field = 'createdDateFrom'
     endpoint = 'inventory/stocktransfers'
     version = 'v1'
@@ -203,8 +249,8 @@ class Listing(BaseStream):
     name = 'listing'
     key_properties = ['listingId']
     replication_method = 'INCREMENTAL'
-    valid_replication_keys = ['created']
-    bookmark_field = 'createdDateFrom'
+    valid_replication_keys = ['created', 'lastModified']
+    bookmark_field = 'modifiedDateFrom'
     endpoint = 'listings'
     version = 'v1'
 
@@ -213,7 +259,7 @@ class Rma(BaseStream):
     name = 'rma'
     key_properties = ['rmaId']
     replication_method = 'INCREMENTAL'
-    valid_replication_keys = ['modifiedDate']
+    valid_replication_keys = ['issueDate']
     bookmark_field = 'createdFromDate'
     endpoint = 'shipments/rmas'
     version = 'v1'
@@ -227,7 +273,7 @@ class Shipment(BaseStream):
     name = 'shipment'
     key_properties = ['shipmentId']
     replication_method = 'INCREMENTAL'
-    valid_replication_keys = ['created']
+    valid_replication_keys = ['created', '']
     bookmark_field = 'shipmentFromDate'
     endpoint = 'shipments'
     version = 'v1'
@@ -250,26 +296,28 @@ class Shipment(BaseStream):
                 }
 
                 time_extracted = utils.now()
-                for record in self.get_resources_by_date(bookmark):
-                    record_bookmark = strptime_to_utc(
-                        record.get(self.valid_replication_keys[0]))
-                    new_bookmark = max(new_bookmark, record_bookmark)
-                    if record_bookmark > bookmark:
-                        with Transformer() as transformer:
-                            transformed_record = transformer.transform(
-                                record,
-                                stream_schema,
-                                stream_metadata,
-                            )
-                            singer.write_record(self.name,
-                                                transformed_record,
-                                                time_extracted=time_extracted)
-                        counter.increment()
-                self.update_bookmark(self.name,
-                                     strftime(new_bookmark, DATETIME_PARSE))
-                window_start = window_start + timedelta(days=7)
-                window_next = bookmark + timedelta(days=7)
-            return counter.value
+                for page in self.get_resources_by_date(bookmark):
+                    for record in page:
+                        record_bookmark = strptime_to_utc(
+                            record.get(self.valid_replication_keys[0]))
+                        new_bookmark = max(new_bookmark, record_bookmark)
+                        if record_bookmark > bookmark:
+                            with Transformer() as transformer:
+                                transformed_record = transformer.transform(
+                                    record,
+                                    stream_schema,
+                                    stream_metadata,
+                                )
+                                singer.write_record(
+                                    self.name,
+                                    transformed_record,
+                                    time_extracted=time_extracted)
+                            counter.increment()
+                    self.update_bookmark(
+                        self.name, strftime(new_bookmark, DATETIME_PARSE))
+                    window_start = window_start + timedelta(days=7)
+                    window_next = bookmark + timedelta(days=7)
+                return counter.value
 
 
 class CustomFieldDefinition(BaseStream):
@@ -373,10 +421,13 @@ AVAILABLE_STREAMS = {
     'application_properties': AppProps,
     'company_info': CompanyInfo,
     'custom_field_definition': CustomFieldDefinition,
+    'incoterm_ship_rule': IncotermShipRule,
     'inventory': Inventory,
     'listing': Listing,
     'order': Order,
+    'payment_type': PaymentType,
     'product': Product,
+    'product_stock_total': ProductStockTotal,
     'purchase_order': PurchaseOrder,
     'purchase_order_format': PurchaseOrderFormat,
     'rma': Rma,

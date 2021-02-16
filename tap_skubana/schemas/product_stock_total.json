@@ -1,0 +1,44 @@
+{
+  "type": "object",
+  "properties": {
+    "gift": {
+      "type": ["null", "boolean"]
+    },
+    "masterSku": {
+      "type": ["null", "string"]
+    },
+    "name": {
+      "type": ["null", "string"]
+    },
+    "productId": {
+      "type": ["null", "integer"]
+    },
+    "productType": {
+      "type": ["null", "string"]
+    },
+    "upc": {
+      "type": ["null", "string"]
+    },
+    "mpn": {
+      "type": ["null", "string"]
+    },
+    "description": {
+      "type": ["null", "string"]
+    },
+    "hazmat": {
+      "type": ["null", "boolean"]
+    },
+    "productWeight": {
+      "type": ["null", "number"]
+    },
+    "onHandQuantity": {
+      "type": ["null", "integer"]
+    },
+    "lockedQuantity": {
+      "type": ["null", "integer"]
+    },
+    "inTransitQuantity": {
+      "type": ["null", "integer"]
+    }
+  }
+}

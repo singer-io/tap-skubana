@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": ["null", "string"]
+    },
+    "orderPaymentTypeId": {
+      "type": ["null", "integer"]
+    }
+  }
+}

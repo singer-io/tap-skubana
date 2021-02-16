@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "code": { 
+          "type": ["null", "string"] 
+      },
+      "description": {
+        "type": ["null", "string"]
+      },
+      "incotermShippingRuleId": {
+        "type": ["null", "integer"]
+      }
+    }
+}
