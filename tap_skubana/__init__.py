@@ -2,7 +2,7 @@ import json
 import sys
 
 import singer
-from singer import Transformer, metadata
+from singer import metadata
 from singer.utils import strptime_to_utc
 from tap_skubana.catalog import generate_catalog
 from tap_skubana.client import SkubanaClient
@@ -18,10 +18,6 @@ def discover(client):
     ]
     catalog = generate_catalog(streams)
     json.dump(catalog, sys.stdout, indent=2)
-
-
-class DependencyException(Exception):
-    pass
 
 
 def stream_is_selected(mdata):
@@ -61,7 +57,6 @@ def sync(client, config, catalog, state):
         stream_keys.append(catalog_entry.stream)
 
     total_streams_count = 0
-
     for catalog_entry in streams:
         stream = AVAILABLE_STREAMS[catalog_entry.stream](client=client,
                                                          config=config,

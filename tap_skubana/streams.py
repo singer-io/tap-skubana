@@ -104,41 +104,38 @@ class BaseStream:
         new_bookmark = bookmark
         with metrics.record_counter(endpoint=self.name) as counter:
             with Transformer() as transformer:
-                results = self.get_resources_by_date(bookmark)
                 time_extracted = utils.now()
-
-                for record in results:
-                    record_bookmark = strptime_to_utc(
-                        record.get(self.valid_replication_keys[0]))
-                    new_bookmark = max(new_bookmark, record_bookmark)
-                    if record_bookmark > bookmark:
-                        with Transformer() as transformer:
-                            transformed_record = transformer.transform(
-                                record,
-                                stream_schema,
-                                stream_metadata,
-                            )
-                            singer.write_record(self.name,
-                                                transformed_record,
-                                                time_extracted=time_extracted)
-                        counter.increment()
-                self.update_bookmark(self.name,
-                                     strftime(new_bookmark, DATETIME_PARSE))
+                for page in self.get_resources_by_date(bookmark):
+                    for record in page:
+                        record_bookmark = strptime_to_utc(
+                            record.get(self.valid_replication_keys[0]))
+                        new_bookmark = max(new_bookmark, record_bookmark)
+                        if record_bookmark > bookmark:
+                            with Transformer() as transformer:
+                                transformed_record = transformer.transform(
+                                    record,
+                                    stream_schema,
+                                    stream_metadata,
+                                )
+                                singer.write_record(self.name,
+                                                    transformed_record,
+                                                    time_extracted=time_extracted)
+                            counter.increment()
+                    self.update_bookmark(self.name, strftime(new_bookmark, DATETIME_PARSE))
             return counter.value
 
     def sync_full_table(self, stream_schema, stream_metadata):
         with singer.metrics.record_counter(endpoint=self.name) as counter:
-            results = self.get_resources()
             time_extracted = utils.now()
-
-            for record in results:
-                with Transformer() as transformer:
-                    singer.write_record(self.name,
-                                        transformer.transform(
-                                            record, stream_schema,
-                                            stream_metadata),
-                                        time_extracted=time_extracted)
-                counter.increment()
+            for page in self.get_resources():
+                for record in page:
+                    with Transformer() as transformer:
+                        singer.write_record(self.name,
+                                            transformer.transform(
+                                                record, stream_schema,
+                                                stream_metadata),
+                                            time_extracted=time_extracted)
+                    counter.increment()
             return counter.value
 
 
@@ -163,6 +160,16 @@ class PurchaseOrder(BaseStream):
     limit = 50
 
 
+class PurchaseOrderFormat(BaseStream):
+    name = 'purchase_order_format'
+    key_properties = ['id']
+    replication_method = 'FULL_TABLE'
+    valid_replication_keys = ['']
+    endpoint = 'purchaseorders/formats'
+    version = 'v1'
+    single_page_response = True
+
+
 class Inventory(BaseStream):
     name = 'inventory'
     key_properties = ['productStockId']
@@ -184,11 +191,11 @@ class Order(BaseStream):
 
 class StockTransfer(BaseStream):
     name = 'stock_transfer'
-    key_properties = ['orderId']
+    key_properties = ['stockTransferOrderId']
     replication_method = 'INCREMENTAL'
     valid_replication_keys = ['created']
     bookmark_field = 'createdDateFrom'
-    endpoint = 'listings'
+    endpoint = 'inventory/stocktransfers'
     version = 'v1'
 
 
@@ -263,17 +270,6 @@ class Shipment(BaseStream):
                 window_start = window_start + timedelta(days=7)
                 window_next = bookmark + timedelta(days=7)
             return counter.value
-
-
-class ChannelPurchase(BaseStream):
-    name = 'channel_purchase'
-    key_properties = ['channelPurchaseId']
-    parent_id = 'orderId'
-    replication_method = 'FULL_TABLE'
-    valid_replication_keys = ['createdDate']
-    endpoint = 'orders/channelpurchases'
-    version = 'v1.1'
-    filter_params = {'orderId': None}
 
 
 class CustomFieldDefinition(BaseStream):
@@ -382,6 +378,7 @@ AVAILABLE_STREAMS = {
     'order': Order,
     'product': Product,
     'purchase_order': PurchaseOrder,
+    'purchase_order_format': PurchaseOrderFormat,
     'rma': Rma,
     'sales_channel': SalesChannel,
     'shipment': Shipment,

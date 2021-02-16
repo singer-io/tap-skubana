@@ -67,7 +67,6 @@ class SkubanaClient:
         next_url = self.build_url(version, path, args)
 
         rows_in_response = 1
-        results = []
         while rows_in_response > 0:
             response = self.make_request(method='GET', url=next_url)
 
@@ -87,8 +86,10 @@ class SkubanaClient:
             page = page + 1
             args['page'] = page
             next_url = self.build_url(version, path, args)
-            results.extend(response)
-        return results
+
+            if response:
+                yield response
+            yield []
 
     @backoff.on_exception(
         backoff.expo,
@@ -96,7 +97,7 @@ class SkubanaClient:
         max_tries=lookup_backoff_max_tries,
         factor=lookup_backoff_factor)
     @sleep_and_retry
-    @limits(calls=2, period=5)
+    @limits(calls=1, period=5)
     def make_request(self, method, url=None, params=None):
 
         headers = {'Authorization': 'Bearer {}'.format(self.access_token)}
@@ -129,7 +130,7 @@ class SkubanaClient:
             raise Server5xxError()
 
         if response.status_code > 299:
-            LOGGER.error('Error status_code = {}'.format(response.status_code))
+            LOGGER.error('Error status_code: %s', response.status_code)
             raise SkubanaBadRequestError(response.reason)
 
         result = []
