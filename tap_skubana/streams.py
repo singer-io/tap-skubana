@@ -71,7 +71,7 @@ class BaseStream:
     def max_from_replication_dates(self, record):
         date_times = {
             dt: strptime_to_utc(record[dt])
-            for dt in self.valid_replication_keys if record[dt] is not None
+            for dt in self.valid_replication_keys if record.get(dt)
         }
         max_key = max(date_times)
         return self.valid_replication_keys[-1], date_times[max_key]
