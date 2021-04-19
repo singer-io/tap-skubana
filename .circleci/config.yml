@@ -8,7 +8,7 @@ jobs:
       - run:
           name: 'Setup virtual env'
           command: |
-            python3 -mvenv /usr/local/share/virtualenvs/tap-<tap_name>
+            python3 -mvenv /usr/local/share/virtualenvs/tap-skubana
             source /usr/local/share/virtualenvs/tap-skubana/bin/activate
             pip install -U pip setuptools
             pip install .[dev]
@@ -17,3 +17,10 @@ jobs:
           command: |
             source /usr/local/share/virtualenvs/tap-tester/bin/activate
             stitch-validate-json tap_skubana/schemas/*.json
+
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - build:
+          context: circleci-user
