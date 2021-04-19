@@ -120,7 +120,7 @@ class SkubanaClient:
 
         if response.status_code == 429:
             retry_after = int(
-                response.headers.get('x-skubana-quota-retryAfter', 15))
+                response.headers.get('x-skubana-quota-retryAfter', 15000))/1000
             message = 'Rate limit hit - 429 - retrying after {} seconds'.format(
                 retry_after)
             LOGGER.info(message)
