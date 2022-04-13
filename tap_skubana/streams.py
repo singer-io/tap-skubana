@@ -233,6 +233,7 @@ class Order(BaseStream):
     bookmark_field = 'modifiedDateFrom'
     endpoint = 'orders'
     version = 'v1.1'
+    limit = 500
 
 
 class StockTransfer(BaseStream):
