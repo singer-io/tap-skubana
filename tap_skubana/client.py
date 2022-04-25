@@ -43,8 +43,23 @@ class SkubanaClient:
 
     def __init__(self, config):
         self.config = config
-        self.session = requests.Session()
         self.access_token = config.get('token')
+        if not hasattr(type(self), '_session'):
+            self._create_session()
+
+    @classmethod
+    def _create_session(cls):
+        cls._session = requests.Session()
+
+    def _get(self, url, headers):
+        retries = 5
+        while retries:
+            try:
+                return self._session.get(url, headers=headers)
+            except requests.ConnectionError as e:
+                last_connection_exception = e
+                retries -= 1
+        raise last_connection_exception
 
     @staticmethod
     def build_url(version, path, args):
@@ -109,7 +124,7 @@ class SkubanaClient:
             if method == "GET":
                 LOGGER.info("Making %s request to %s with params: %s", method,
                             url, params)
-                response = self.session.get(url, headers=headers)
+                response = self._get(url, headers=headers)
             else:
                 raise Exception("Unsupported HTTP method")
         except (ConnectionError, ProtocolError) as ex:
